@@ -1,0 +1,238 @@
+/* ============================================================
+   Vagas Guarujá — Foundations
+   Colors, type, spacing, radii, shadows, motion
+   ============================================================ */
+
+/* Fonts via Google Fonts (substitutions — see README) */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Color: Brand ---------- */
+  --vg-green-50:  #E6F7EF;
+  --vg-green-100: #C2EBD6;
+  --vg-green-200: #8FDAB5;
+  --vg-green-300: #5CC993;
+  --vg-green-400: #2DBA79;
+  --vg-green-500: #00A86B;  /* PRIMARY */
+  --vg-green-600: #008F5A;
+  --vg-green-700: #006D45;
+  --vg-green-800: #0A4D3C;  /* DEEP — used for headings on dark, brand wordmark */
+  --vg-green-900: #042E22;
+
+  /* ---------- Color: Accent (Coral — Guarujá costa, energia) ---------- */
+  --vg-coral-50:  #FFF0EA;
+  --vg-coral-100: #FFD8C8;
+  --vg-coral-300: #FF9B7A;
+  --vg-coral-500: #FF6B35;  /* ACCENT — used sparingly: highlight badges, premium */
+  --vg-coral-700: #C44A1F;
+
+  /* ---------- Color: Neutrals (warm-cool gray, slight olive) ---------- */
+  --vg-ink-50:  #F7F8F6;
+  --vg-ink-100: #EEF0EC;
+  --vg-ink-200: #DDE0DA;
+  --vg-ink-300: #C1C6BC;
+  --vg-ink-400: #8E948A;
+  --vg-ink-500: #6B7268;
+  --vg-ink-600: #4B514A;
+  --vg-ink-700: #32362F;
+  --vg-ink-800: #1E211C;
+  --vg-ink-900: #0F1110;
+
+  /* ---------- Color: Semantic (alerts) ---------- */
+  --vg-success: #00A86B;
+  --vg-success-bg: #E6F7EF;
+  --vg-warning: #E8A833;
+  --vg-warning-bg: #FCF3DF;
+  --vg-danger:  #D9434E;
+  --vg-danger-bg:  #FCE7E8;
+  --vg-info:    #2563D9;
+  --vg-info-bg: #E1ECFB;
+
+  /* ---------- Surfaces / FG / BG ---------- */
+  --vg-bg:        #FAFAF7;   /* page background — slight warm off-white */
+  --vg-bg-alt:    #F2F3EF;   /* alt sections, banners */
+  --vg-surface:   #FFFFFF;   /* cards */
+  --vg-surface-2: #F7F8F6;   /* nested cards / muted blocks */
+  --vg-border:    #E5E8E2;
+  --vg-border-strong: #C1C6BC;
+
+  --vg-fg-1: #1E211C;        /* primary text */
+  --vg-fg-2: #4B514A;        /* secondary text */
+  --vg-fg-3: #6B7268;        /* tertiary / meta */
+  --vg-fg-4: #8E948A;        /* placeholder, disabled */
+  --vg-fg-inverse: #FFFFFF;
+  --vg-fg-brand: #006D45;    /* brand-colored text (links, brand mentions) */
+
+  /* ---------- Typography ---------- */
+  --vg-font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --vg-font-body:    'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --vg-font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale (rem-based, 16px root) */
+  --vg-text-2xs: 0.6875rem; /* 11 */
+  --vg-text-xs:  0.75rem;   /* 12 */
+  --vg-text-sm:  0.875rem;  /* 14 */
+  --vg-text-base:1rem;      /* 16 */
+  --vg-text-md:  1.125rem;  /* 18 */
+  --vg-text-lg:  1.25rem;   /* 20 */
+  --vg-text-xl:  1.5rem;    /* 24 */
+  --vg-text-2xl: 1.875rem;  /* 30 */
+  --vg-text-3xl: 2.25rem;   /* 36 */
+  --vg-text-4xl: 3rem;      /* 48 */
+  --vg-text-5xl: 3.75rem;   /* 60 */
+  --vg-text-6xl: 4.5rem;    /* 72 */
+
+  --vg-leading-tight: 1.1;
+  --vg-leading-snug:  1.25;
+  --vg-leading-normal: 1.5;
+  --vg-leading-relaxed: 1.65;
+
+  --vg-track-tight: -0.02em;
+  --vg-track-normal: 0;
+  --vg-track-wide:  0.04em;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --vg-space-0:  0;
+  --vg-space-1:  0.25rem;   /* 4 */
+  --vg-space-2:  0.5rem;    /* 8 */
+  --vg-space-3:  0.75rem;   /* 12 */
+  --vg-space-4:  1rem;      /* 16 */
+  --vg-space-5:  1.25rem;   /* 20 */
+  --vg-space-6:  1.5rem;    /* 24 */
+  --vg-space-8:  2rem;      /* 32 */
+  --vg-space-10: 2.5rem;    /* 40 */
+  --vg-space-12: 3rem;      /* 48 */
+  --vg-space-16: 4rem;      /* 64 */
+  --vg-space-20: 5rem;      /* 80 */
+  --vg-space-24: 6rem;      /* 96 */
+
+  /* ---------- Radii ---------- */
+  --vg-radius-xs: 4px;
+  --vg-radius-sm: 8px;
+  --vg-radius-md: 12px;   /* default — cards, inputs */
+  --vg-radius-lg: 16px;   /* hero cards, large panels */
+  --vg-radius-xl: 24px;
+  --vg-radius-pill: 999px;
+
+  /* ---------- Shadows (subtle, warm tint) ---------- */
+  --vg-shadow-xs: 0 1px 2px rgba(15, 17, 16, 0.04);
+  --vg-shadow-sm: 0 1px 3px rgba(15, 17, 16, 0.06), 0 1px 2px rgba(15, 17, 16, 0.04);
+  --vg-shadow-md: 0 4px 12px -2px rgba(15, 17, 16, 0.08), 0 2px 4px rgba(15, 17, 16, 0.04);
+  --vg-shadow-lg: 0 12px 32px -8px rgba(15, 17, 16, 0.12), 0 4px 8px rgba(15, 17, 16, 0.04);
+  --vg-shadow-xl: 0 24px 56px -12px rgba(15, 17, 16, 0.18);
+  --vg-shadow-brand: 0 8px 24px -8px rgba(0, 168, 107, 0.4);
+  --vg-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* ---------- Motion ---------- */
+  --vg-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --vg-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --vg-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --vg-dur-fast: 120ms;
+  --vg-dur-base: 200ms;
+  --vg-dur-slow: 320ms;
+}
+
+/* ============================================================
+   Semantic typography classes — direct mapping
+   ============================================================ */
+
+.vg-display-1 {
+  font-family: var(--vg-font-display);
+  font-size: clamp(2.5rem, 5vw, var(--vg-text-6xl));
+  font-weight: 700;
+  line-height: var(--vg-leading-tight);
+  letter-spacing: var(--vg-track-tight);
+  color: var(--vg-fg-1);
+}
+
+.vg-display-2 {
+  font-family: var(--vg-font-display);
+  font-size: clamp(2rem, 4vw, var(--vg-text-5xl));
+  font-weight: 700;
+  line-height: var(--vg-leading-tight);
+  letter-spacing: var(--vg-track-tight);
+  color: var(--vg-fg-1);
+}
+
+.vg-h1 {
+  font-family: var(--vg-font-display);
+  font-size: var(--vg-text-3xl);
+  font-weight: 700;
+  line-height: var(--vg-leading-snug);
+  letter-spacing: var(--vg-track-tight);
+  color: var(--vg-fg-1);
+}
+
+.vg-h2 {
+  font-family: var(--vg-font-display);
+  font-size: var(--vg-text-2xl);
+  font-weight: 600;
+  line-height: var(--vg-leading-snug);
+  color: var(--vg-fg-1);
+}
+
+.vg-h3 {
+  font-family: var(--vg-font-display);
+  font-size: var(--vg-text-xl);
+  font-weight: 600;
+  line-height: var(--vg-leading-snug);
+  color: var(--vg-fg-1);
+}
+
+.vg-h4 {
+  font-family: var(--vg-font-body);
+  font-size: var(--vg-text-md);
+  font-weight: 600;
+  line-height: var(--vg-leading-snug);
+  color: var(--vg-fg-1);
+}
+
+.vg-body {
+  font-family: var(--vg-font-body);
+  font-size: var(--vg-text-base);
+  font-weight: 400;
+  line-height: var(--vg-leading-relaxed);
+  color: var(--vg-fg-1);
+}
+
+.vg-body-sm {
+  font-family: var(--vg-font-body);
+  font-size: var(--vg-text-sm);
+  font-weight: 400;
+  line-height: var(--vg-leading-normal);
+  color: var(--vg-fg-2);
+}
+
+.vg-meta {
+  font-family: var(--vg-font-body);
+  font-size: var(--vg-text-xs);
+  font-weight: 500;
+  line-height: var(--vg-leading-normal);
+  letter-spacing: var(--vg-track-wide);
+  text-transform: uppercase;
+  color: var(--vg-fg-3);
+}
+
+.vg-label {
+  font-family: var(--vg-font-body);
+  font-size: var(--vg-text-sm);
+  font-weight: 600;
+  line-height: var(--vg-leading-normal);
+  color: var(--vg-fg-1);
+}
+
+.vg-mono {
+  font-family: var(--vg-font-mono);
+  font-size: var(--vg-text-sm);
+  font-weight: 500;
+  color: var(--vg-fg-2);
+}
+
+/* Page-level resets used by previews */
+.vg-page {
+  font-family: var(--vg-font-body);
+  color: var(--vg-fg-1);
+  background: var(--vg-bg);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+}

@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Vagas Guarujá · A plataforma de empregos do litoral</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#00A86B"/>
+    <path d="M70 70 L100 140 L130 70" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M100 140 L100 160" stroke="white" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="142" cy="80" r="9" fill="#FF6B35"/>
+  </svg>
+</template>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--vg-bg); }
+  body { font-family: var(--vg-font-body); color: var(--vg-fg-1); -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  button, a { font-family: inherit; cursor: pointer; text-decoration: none; color: inherit; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* ─── Header ─── */
+  header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,247,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(229,232,226,0.6); }
+  header .row { display: flex; align-items: center; gap: 32px; height: 72px; }
+  header .logo { display: flex; align-items: center; gap: 10px; font-family: var(--vg-font-display); font-weight: 700; font-size: 17px; color: var(--vg-green-800); letter-spacing: -0.01em; }
+  header .logo .mark { width: 32px; height: 32px; border-radius: 8px; background: var(--vg-green-500); display: flex; align-items: center; justify-content: center; }
+  header .logo .sub { font-size: 13px; color: var(--vg-green-600); font-weight: 500; margin-left: 4px; }
+  header nav { display: flex; gap: 28px; }
+  header nav a { font-size: 14px; font-weight: 500; color: var(--vg-fg-2); }
+  header nav a:hover { color: var(--vg-fg-1); }
+  header .actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .btn { font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: 12px; border: none; display: inline-flex; align-items: center; gap: 8px; transition: all 180ms var(--vg-ease-out); }
+  .btn-primary { background: var(--vg-green-500); color: white; box-shadow: var(--vg-shadow-sm); }
+  .btn-primary:hover { background: var(--vg-green-600); box-shadow: var(--vg-shadow-md); transform: translateY(-1px); }
+  .btn-secondary { background: white; color: var(--vg-fg-1); border: 1px solid var(--vg-border-strong); }
+  .btn-secondary:hover { background: var(--vg-bg-alt); }
+  .btn-ghost { background: transparent; color: var(--vg-fg-2); padding: 10px 14px; }
+  .btn-ghost:hover { color: var(--vg-fg-1); }
+  .btn-lg { padding: 14px 22px; font-size: 16px; border-radius: 14px; }
+
+  /* ─── Hero ─── */
+  .hero { padding: 80px 0 120px; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; right: -200px; top: 100px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(0,168,107,0.12), transparent 70%); pointer-events: none; }
+  .hero .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; position: relative; }
+  .hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--vg-green-50); color: var(--vg-green-700); font-size: 12px; font-weight: 600; border-radius: 999px; letter-spacing: 0.02em; }
+  .hero .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--vg-green-500); box-shadow: 0 0 0 4px rgba(0,168,107,0.18); }
+  .hero h1 { font-family: var(--vg-font-display); font-size: clamp(40px, 5.5vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; margin: 18px 0 22px; color: var(--vg-fg-1); }
+  .hero h1 em { font-style: normal; color: var(--vg-green-600); }
+  .hero .lead { font-size: 18px; line-height: 1.55; color: var(--vg-fg-2); max-width: 480px; }
+  .hero .ctas { display: flex; gap: 12px; margin-top: 28px; }
+  .hero .trust { display: flex; gap: 8px; align-items: center; margin-top: 22px; font-size: 13px; color: var(--vg-fg-3); }
+  .hero .trust .av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--vg-bg); }
+  .hero .trust .av:nth-child(1) { background: #C2EBD6; }
+  .hero .trust .av:nth-child(2) { background: #FFD8C8; margin-left: -10px; }
+  .hero .trust .av:nth-child(3) { background: #E1ECFB; margin-left: -10px; }
+  .hero .trust .av:nth-child(4) { background: #FCF3DF; margin-left: -10px; }
+
+  /* Phone mockup */
+  .phone-mock { width: 320px; height: 640px; background: white; border-radius: 40px; padding: 16px; box-shadow: 0 40px 80px -20px rgba(15,17,16,0.25), 0 0 0 1px rgba(15,17,16,0.06); margin: 0 auto; position: relative; }
+  .phone-mock::before { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 100px; height: 28px; border-radius: 999px; background: #0F1110; z-index: 2; }
+  .pm-screen { background: var(--vg-bg); border-radius: 28px; height: 100%; overflow: hidden; padding: 60px 16px 16px; }
+  .pm-h1 { font-family: var(--vg-font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin-bottom: 2px; }
+  .pm-sub { font-size: 11px; color: var(--vg-fg-3); margin-bottom: 12px; }
+  .pm-search { background: white; border: 1px solid var(--vg-border); border-radius: 999px; padding: 8px 14px; font-size: 12px; color: var(--vg-fg-3); margin-bottom: 14px; box-shadow: var(--vg-shadow-xs); }
+  .pm-job { background: white; border: 1px solid var(--vg-border); border-radius: 12px; padding: 12px; margin-bottom: 8px; box-shadow: var(--vg-shadow-xs); }
+  .pm-job .h { display: flex; gap: 10px; align-items: center; }
+  .pm-job .logo { width: 32px; height: 32px; border-radius: 8px; background: var(--vg-green-50); color: var(--vg-green-700); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; flex-shrink: 0; }
+  .pm-job .t { font-weight: 700; font-size: 12px; }
+  .pm-job .c { font-size: 10px; color: var(--vg-fg-3); }
+  .pm-job .salary { font-family: var(--vg-font-display); font-weight: 700; color: var(--vg-green-700); font-size: 13px; margin-top: 6px; }
+  .pm-job .tag { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 999px; background: var(--vg-coral-50); color: var(--vg-coral-700); display: inline-block; }
+
+  /* ─── Stats strip ─── */
+  .stats-strip { background: var(--vg-green-800); padding: 56px 0; color: white; }
+  .stats-strip .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: left; }
+  .stats-strip .val { font-family: var(--vg-font-display); font-size: 52px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .stats-strip .val span { color: var(--vg-green-300); }
+  .stats-strip .lbl { font-size: 14px; color: var(--vg-green-100); margin-top: 8px; }
+
+  /* ─── Section common ─── */
+  section { padding: 100px 0; }
+  .section-head { max-width: 720px; margin-bottom: 56px; }
+  .section-head .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vg-green-600); margin-bottom: 14px; }
+  .section-head h2 { font-family: var(--vg-font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; }
+  .section-head p { font-size: 18px; line-height: 1.55; color: var(--vg-fg-2); margin: 0; }
+
+  /* ─── For candidates ─── */
+  .for-candidates { background: var(--vg-bg-alt); }
+  .for-candidates .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .feature-list { display: flex; flex-direction: column; gap: 28px; }
+  .feature { display: flex; gap: 18px; }
+  .feature .ic { width: 44px; height: 44px; border-radius: 12px; background: var(--vg-green-500); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: var(--vg-shadow-brand); }
+  .feature h4 { font-family: var(--vg-font-display); font-size: 19px; font-weight: 700; margin: 0 0 6px; }
+  .feature p { margin: 0; color: var(--vg-fg-2); font-size: 15px; line-height: 1.55; }
+
+  /* ─── For companies ─── */
+  .for-companies .grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .dashboard-mock { background: white; border-radius: 16px; box-shadow: var(--vg-shadow-lg); overflow: hidden; border: 1px solid var(--vg-border); }
+  .dm-bar { background: var(--vg-bg); padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--vg-border); }
+  .dm-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--vg-ink-200); }
+  .dm-body { display: grid; grid-template-columns: 140px 1fr; min-height: 360px; }
+  .dm-side { background: var(--vg-green-800); padding: 16px 12px; color: white; }
+  .dm-side .item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; margin-bottom: 2px; color: rgba(255,255,255,0.7); }
+  .dm-side .item.on { background: var(--vg-green-700); color: white; }
+  .dm-side .ic { width: 14px; height: 14px; border-radius: 3px; background: currentColor; opacity: 0.7; }
+  .dm-content { padding: 20px; }
+  .dm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .dm-stat { padding: 12px; border: 1px solid var(--vg-border); border-radius: 10px; }
+  .dm-stat .l { font-size: 9px; font-weight: 600; color: var(--vg-fg-3); letter-spacing: 0.06em; text-transform: uppercase; }
+  .dm-stat .v { font-family: var(--vg-font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-top: 2px; }
+  .dm-row { display: grid; grid-template-columns: 1fr 60px 60px; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--vg-border); font-size: 11px; align-items: center; }
+  .dm-row:last-child { border: 0; }
+  .dm-row .t { font-weight: 600; }
+  .dm-row .m { color: var(--vg-fg-3); font-size: 10px; }
+  .dm-row .pill { font-size: 9px; padding: 2px 7px; border-radius: 999px; background: var(--vg-green-50); color: var(--vg-green-700); font-weight: 600; text-align: center; }
+  .dm-row .num { font-family: var(--vg-font-display); font-weight: 700; font-size: 14px; text-align: right; }
+
+  /* ─── How it works ─── */
+  .how { background: var(--vg-green-50); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .step { background: white; border-radius: 16px; padding: 28px; box-shadow: var(--vg-shadow-sm); border: 1px solid var(--vg-border); }
+  .step .n { font-family: var(--vg-font-display); font-size: 40px; font-weight: 700; color: var(--vg-green-500); line-height: 1; margin-bottom: 16px; }
+  .step h4 { font-family: var(--vg-font-display); font-size: 18px; font-weight: 700; margin: 0 0 8px; }
+  .step p { margin: 0; color: var(--vg-fg-2); font-size: 14px; line-height: 1.5; }
+
+  /* ─── Pricing ─── */
+  .pricing .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pack { background: white; border: 1.5px solid var(--vg-border); border-radius: 18px; padding: 32px; position: relative; }
+  .pack.popular { border-color: var(--vg-green-500); box-shadow: 0 0 0 1px var(--vg-green-500), var(--vg-shadow-lg); }
+  .pack .tag { position: absolute; top: -12px; right: 24px; background: var(--vg-coral-500); color: white; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 999px; letter-spacing: 0.04em; }
+  .pack .credits { font-family: var(--vg-font-display); font-size: 56px; font-weight: 700; color: var(--vg-green-700); letter-spacing: -0.03em; line-height: 1; }
+  .pack .credits small { font-size: 16px; color: var(--vg-fg-3); font-weight: 500; margin-left: 6px; }
+  .pack .price { font-family: var(--vg-font-display); font-size: 26px; font-weight: 700; margin-top: 16px; }
+  .pack .per { font-size: 13px; color: var(--vg-fg-3); margin-top: 4px; }
+  .pack ul { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-direction: column; gap: 10px; }
+  .pack ul li { font-size: 14px; display: flex; align-items: center; gap: 8px; color: var(--vg-fg-2); }
+  .pack ul li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--vg-green-50); color: var(--vg-green-700); display: inline-block; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23006D45' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 10px; background-position: center; background-repeat: no-repeat; flex-shrink: 0; }
+  .pack button { width: 100%; margin-top: 28px; padding: 13px; }
+
+  /* ─── FAQ ─── */
+  .faq .list { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--vg-border); padding: 20px 0; }
+  .faq-item summary { font-weight: 600; font-size: 17px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--vg-fg-1); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 22px; color: var(--vg-green-600); font-weight: 400; }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item p { color: var(--vg-fg-2); font-size: 15px; line-height: 1.6; margin: 10px 0 0; }
+
+  /* ─── CTA banner ─── */
+  .cta-banner { background: linear-gradient(135deg, var(--vg-green-700), var(--vg-green-500)); padding: 80px 0; color: white; text-align: center; position: relative; overflow: hidden; }
+  .cta-banner h2 { font-family: var(--vg-font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 16px; }
+  .cta-banner p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+  .cta-banner .btn { padding: 16px 28px; font-size: 16px; border-radius: 14px; }
+
+  /* ─── Footer ─── */
+  footer { background: var(--vg-ink-900); color: rgba(255,255,255,0.65); padding: 64px 0 32px; font-size: 14px; }
+  footer .row { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 40px; margin-bottom: 48px; }
+  footer h5 { font-family: var(--vg-font-display); color: white; font-size: 14px; font-weight: 700; margin: 0 0 16px; }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  footer ul a { color: rgba(255,255,255,0.65); }
+  footer ul a:hover { color: white; }
+  footer .brand-block .name { color: white; font-family: var(--vg-font-display); font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+  footer .brand-block p { line-height: 1.55; max-width: 280px; margin: 0 0 18px; font-size: 13px; }
+  footer .legal { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container row">
+    <a class="logo" href="#">
+      <span class="mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6 L12 18 L18 6"/><path d="M12 18 L12 22"/></svg>
+      </span>
+      Vagas<span class="sub">Guarujá</span>
+    </a>
+    <nav>
+      <a href="#candidatos">Para candidatos</a>
+      <a href="#empresas">Para empresas</a>
+      <a href="#como">Como funciona</a>
+      <a href="#precos">Preços</a>
+    </nav>
+    <div class="actions">
+      <button class="btn btn-ghost">Entrar</button>
+      <button class="btn btn-primary">Anunciar vaga</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> 68 novas vagas esta semana em Guarujá</span>
+      <h1>O emprego perto<br>de você fica <em>aqui.</em></h1>
+      <p class="lead">A plataforma de vagas do litoral. Hotéis, comércio, construção, tecnologia. Empresas locais publicam todos os dias — você se candidata com um toque.</p>
+      <div class="ctas">
+        <button class="btn btn-primary btn-lg">Buscar vagas</button>
+        <button class="btn btn-secondary btn-lg">Anunciar como empresa</button>
+      </div>
+      <div class="trust">
+        <span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span>
+        <span style="margin-left:8px"><b style="color:var(--vg-fg-1)">+12 mil</b> candidatos cadastrados na região</span>
+      </div>
+    </div>
+
+    <div class="phone-mock">
+      <div class="pm-screen">
+        <div class="pm-h1">Olá, João 👋</div>
+        <div class="pm-sub">68 novas vagas em Guarujá</div>
+        <div class="pm-search">🔍  Cargo, área, empresa...</div>
+        <div class="pm-job">
+          <div class="h">
+            <div class="logo">GM</div>
+            <div style="flex:1">
+              <div class="t">Recepcionista Bilíngue</div>
+              <div class="c">Hotel Guarujá Mar</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <span class="tag">DESTAQUE</span>
+            <div class="salary">R$ 2.500</div>
+          </div>
+        </div>
+        <div class="pm-job">
+          <div class="h">
+            <div class="logo" style="background:#FFD8C8;color:#C44A1F">CG</div>
+            <div style="flex:1">
+              <div class="t">Cozinheiro Internacional</div>
+              <div class="c">Casa Grande Hotel</div>
+            </div>
+          </div>
+          <div class="salary">R$ 3.200</div>
+        </div>
+        <div class="pm-job">
+          <div class="h">
+            <div class="logo">SL</div>
+            <div style="flex:1">
+              <div class="t">Salva-vidas · Temporada</div>
+              <div class="c">Clube Náutico Guarujá</div>
+            </div>
+          </div>
+          <div class="salary">R$ 2.800</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip" style="padding: 56px 0">
+  <div class="container row">
+    <div><div class="val">12<span>mil</span></div><div class="lbl">candidatos cadastrados</div></div>
+    <div><div class="val">680<span>+</span></div><div class="lbl">empresas locais</div></div>
+    <div><div class="val">3.4<span>mil</span></div><div class="lbl">vagas publicadas em 2025</div></div>
+    <div><div class="val">8<span>dias</span></div><div class="lbl">tempo médio de contratação</div></div>
+  </div>
+</section>
+
+<!-- CANDIDATOS -->
+<section class="for-candidates" id="candidatos">
+  <div class="container grid">
+    <div>
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Para candidatos</span>
+        <h2>Receba a vaga certa, antes dos outros.</h2>
+        <p>Encontre trabalho na região do Guarujá sem se candidatar a 100 vagas. Receba só o que combina com seu perfil.</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          </div>
+          <div>
+            <h4>Busca local e relevante</h4>
+            <p>Filtre por bairro, modalidade, contrato e benefícios. Só vagas reais do Guarujá e arredores.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          </div>
+          <div>
+            <h4>Alertas por email</h4>
+            <p>Cadastre seu perfil uma vez e receba avisos quando aparecer uma vaga compatível.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Status em tempo real</h4>
+            <p>Saiba quando a empresa viu sua candidatura, te chamou para entrevista, ou preencheu a vaga.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" style="margin-top:36px">Criar perfil grátis</button>
+    </div>
+    <div>
+      <div class="phone-mock" style="width: 300px; height: 600px">
+        <div class="pm-screen">
+          <div style="font-family:var(--vg-font-display);font-weight:700;font-size:20px;letter-spacing:-0.02em">Suas candidaturas</div>
+          <div class="pm-sub">3 ativas · avisos por email</div>
+          <div class="pm-job" style="margin-top:12px">
+            <div class="h">
+              <div class="logo">GM</div>
+              <div style="flex:1">
+                <div class="t">Recepcionista Bilíngue</div>
+                <div class="c">Hotel Guarujá Mar</div>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding:6px 10px;border-radius:8px;background:var(--vg-info-bg);color:#1742A0;font-size:10px;font-weight:600">⏳  Em análise</div>
+          </div>
+          <div class="pm-job">
+            <div class="h">
+              <div class="logo" style="background:#FFD8C8;color:#C44A1F">CG</div>
+              <div style="flex:1">
+                <div class="t">Cozinheiro Internacional</div>
+                <div class="c">Casa Grande Hotel</div>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding:6px 10px;border-radius:8px;background:var(--vg-ink-100);color:var(--vg-fg-2);font-size:10px;font-weight:600">👁  Visualizada pela empresa</div>
+          </div>
+          <div class="pm-job">
+            <div class="h">
+              <div class="logo">PE</div>
+              <div style="flex:1">
+                <div class="t">Desenvolvedor Front-end</div>
+                <div class="c">Praia Estúdio</div>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding:6px 10px;border-radius:8px;background:var(--vg-success-bg);color:var(--vg-green-800);font-size:10px;font-weight:600">✓  Selecionado para entrevista</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS -->
+<section class="for-companies" id="empresas">
+  <div class="container grid">
+    <div class="dashboard-mock">
+      <div class="dm-bar">
+        <span class="dot" style="background:#FF6B5C"></span>
+        <span class="dot" style="background:#FFC542"></span>
+        <span class="dot" style="background:#00C46A"></span>
+        <span style="margin-left:auto;font-family:var(--vg-font-mono);font-size:11px;color:var(--vg-fg-4)">vagasguaruja.com.br/painel</span>
+      </div>
+      <div class="dm-body">
+        <div class="dm-side">
+          <div class="item on"><span class="ic"></span>Dashboard</div>
+          <div class="item"><span class="ic"></span>Vagas</div>
+          <div class="item"><span class="ic"></span>Candidatos</div>
+          <div class="item"><span class="ic"></span>Créditos</div>
+        </div>
+        <div class="dm-content">
+          <div class="dm-stats">
+            <div class="dm-stat"><div class="l">Ativas</div><div class="v">8</div></div>
+            <div class="dm-stat"><div class="l">Candidaturas</div><div class="v">142</div></div>
+            <div class="dm-stat"><div class="l">Créditos</div><div class="v">12</div></div>
+          </div>
+          <div class="dm-row">
+            <div><div class="t">Recepcionista Bilíngue</div><div class="m">há 2 dias · CLT</div></div>
+            <div class="pill">Ativa</div>
+            <div class="num">28</div>
+          </div>
+          <div class="dm-row">
+            <div><div class="t">Cozinheiro Internacional</div><div class="m">há 4 dias · CLT</div></div>
+            <div class="pill">Ativa</div>
+            <div class="num">14</div>
+          </div>
+          <div class="dm-row">
+            <div><div class="t">Camareira</div><div class="m">há 12 dias · CLT</div></div>
+            <div class="pill" style="background:var(--vg-warning-bg);color:#8C6010">2 dias</div>
+            <div class="num">9</div>
+          </div>
+          <div class="dm-row">
+            <div><div class="t">Salva-vidas</div><div class="m">há 1 dia · Temporário</div></div>
+            <div class="pill">Ativa</div>
+            <div class="num">22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Para empresas</span>
+        <h2>Contrate quem está pertinho da sua porta.</h2>
+        <p>Sem mensalidade. Compre só os créditos que você precisar. Publique uma vaga em 2 minutos.</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14 9a3 3 0 0 0-6 0c0 4 6 2 6 6a3 3 0 0 1-6 0"/><path d="M12 6v12"/></svg>
+          </div>
+          <div>
+            <h4>Pague só pelo que usa</h4>
+            <p>1 crédito = 1 vaga ativa por 30 dias. Sem assinatura, sem fidelidade. Pix, boleto ou cartão pela Mercado Pago.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <h4>Gerencie candidatos em um lugar</h4>
+            <p>Kanban com novos, em análise, selecionados, rejeitados. Notificações por email a cada candidatura.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div>
+            <h4>Vagas que aparecem para quem importa</h4>
+            <p>Sua vaga é mostrada para candidatos do Guarujá e região, filtrados por perfil compatível.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how" id="como">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:48px">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Simples assim.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h4>Crie sua conta</h4>
+        <p>Candidato ou empresa, cadastro em 2 minutos com confirmação por email.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h4>Empresa publica</h4>
+        <p>Cargo, salário, localização e requisitos. 1 crédito por vaga, ativa por 30 dias.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h4>Candidato aplica</h4>
+        <p>Um toque. A empresa recebe email com seu perfil completo.</p>
+      </div>
+      <div class="step">
+        <div class="n">4</div>
+        <h4>Acompanhe o status</h4>
+        <p>Em análise, visualizada, selecionado, vaga preenchida — todos avisados por email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precos">
+  <div class="container">
+    <div class="section-head" style="margin: 0 auto 56px; text-align: center">
+      <span class="eyebrow">Preços para empresas</span>
+      <h2>Pague só pelas vagas que publicar.</h2>
+      <p>Sem mensalidade. Sem fidelidade. Quanto mais créditos no pacote, menor o custo por vaga.</p>
+    </div>
+    <div class="packs">
+      <div class="pack">
+        <div class="credits">5<small>créditos</small></div>
+        <div class="price">R$ 59,00</div>
+        <div class="per">R$ 11,80 por vaga</div>
+        <ul>
+          <li>5 vagas ativas por 30 dias</li>
+          <li>Dashboard de candidatos</li>
+          <li>Notificações por email</li>
+        </ul>
+        <button class="btn btn-secondary">Comprar 5</button>
+      </div>
+      <div class="pack popular">
+        <span class="tag">MAIS POPULAR</span>
+        <div class="credits">10<small>créditos</small></div>
+        <div class="price">R$ 99,00</div>
+        <div class="per">R$ 9,90 por vaga · economia 16%</div>
+        <ul>
+          <li>10 vagas ativas por 30 dias</li>
+          <li>Tudo do plano de 5</li>
+          <li>Destaque nas buscas (2 vagas)</li>
+        </ul>
+        <button class="btn btn-primary">Comprar 10</button>
+      </div>
+      <div class="pack">
+        <div class="credits">30<small>créditos</small></div>
+        <div class="price">R$ 249,00</div>
+        <div class="per">R$ 8,30 por vaga · economia 30%</div>
+        <ul>
+          <li>30 vagas ativas por 30 dias</li>
+          <li>Tudo do plano de 10</li>
+          <li>Conta multi-usuário</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <button class="btn btn-secondary">Comprar 30</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-head" style="margin: 0 auto 48px; text-align: center">
+      <span class="eyebrow">FAQ</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="list">
+      <details class="faq-item" open>
+        <summary>Vagas Guarujá é gratuito para candidatos?</summary>
+        <p>Sim, 100% gratuito. Você cria perfil, busca vagas e se candidata sem pagar nada. Quem paga é a empresa que publica.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Como funciona o sistema de créditos para empresas?</summary>
+        <p>Cada crédito permite publicar 1 vaga, que fica ativa por 30 dias. Você compra um pacote (5, 10 ou 30), usa quando quiser e o saldo nunca expira.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O pagamento é seguro?</summary>
+        <p>Sim. Todo o pagamento é processado pela Mercado Pago, com Pix, boleto ou cartão de crédito. Não armazenamos dados do cartão.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O que acontece com meus dados? (LGPD)</summary>
+        <p>Seus dados são usados apenas para conectar você a empresas. Você pode visualizar, exportar e solicitar exclusão a qualquer momento no painel de privacidade.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Como sou avisado quando uma vaga é preenchida?</summary>
+        <p>Você recebe um email automático quando a empresa marca a vaga como preenchida. O mesmo vale para mudanças de status na sua candidatura.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Atende apenas a região do Guarujá?</summary>
+        <p>Foco principal é Guarujá, Vicente de Carvalho e Bertioga. Mas também recebemos vagas de Santos, São Vicente e cidades próximas da Baixada.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA banner -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Sua próxima vaga<br>está a um toque.</h2>
+    <p>Junte-se aos +12 mil candidatos e 680 empresas do Guarujá já cadastrados.</p>
+    <div style="display:inline-flex; gap:12px;">
+      <button class="btn btn-lg" style="background:white;color:var(--vg-green-700)">Buscar vagas</button>
+      <button class="btn btn-lg" style="background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.4)">Anunciar vaga</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="brand-block">
+        <div class="name">Vagas Guarujá</div>
+        <p>A plataforma de empregos do litoral. Conectando pessoas e empresas locais.</p>
+        <div style="display:flex;gap:10px">
+          <span style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">in</span>
+          <span style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">ig</span>
+          <span style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">fb</span>
+        </div>
+      </div>
+      <div>
+        <h5>Candidatos</h5>
+        <ul>
+          <li><a>Buscar vagas</a></li>
+          <li><a>Criar perfil</a></li>
+          <li><a>Alertas</a></li>
+          <li><a>Currículo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Empresas</h5>
+        <ul>
+          <li><a>Anunciar vaga</a></li>
+          <li><a>Comprar créditos</a></li>
+          <li><a>Painel</a></li>
+          <li><a>Casos de sucesso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Empresa</h5>
+        <ul>
+          <li><a>Sobre</a></li>
+          <li><a>Blog</a></li>
+          <li><a>Contato</a></li>
+          <li><a>Trabalhe conosco</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a>Termos de uso</a></li>
+          <li><a>Privacidade & LGPD</a></li>
+          <li><a>Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Vagas Guarujá · CNPJ 00.000.000/0001-00</div>
+      <div>Guarujá, SP · Brasil</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

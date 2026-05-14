@@ -1,0 +1,11 @@
+<svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  
+  <g>
+    <path d="M6 6 L16 28 L26 6" stroke="#00A86B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+    <path d="M16 28 L16 34" stroke="#00A86B" stroke-width="4" stroke-linecap="round"></path>
+    <circle cx="22" cy="10" r="3" fill="#FF6B35"></circle>
+  </g>
+  
+  <text x="38" y="20" font-family="Bricolage Grotesque, Plus Jakarta Sans, sans-serif" font-size="17" font-weight="700" fill="#0A4D3C" letter-spacing="-0.5">Vagas</text>
+  <text x="38" y="34" font-family="Bricolage Grotesque, Plus Jakarta Sans, sans-serif" font-size="13" font-weight="500" fill="#00A86B" letter-spacing="0.5">Guarujá</text>
+</svg>
